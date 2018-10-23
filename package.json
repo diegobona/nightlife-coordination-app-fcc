@@ -7,7 +7,7 @@
     "node": "8.12.0"
   },
   "scripts": {
-    "start": "webpack -p && node ./bin/www",
+    "start": "node ./bin/www",
     "devstart": "npm-run-all --parallel dev:server dev:webpack",
     "dev:server": "nodemon ./bin/www",
     "dev:webpack": "webpack-dev-server --mode development --inline --hot",
