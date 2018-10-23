@@ -1,7 +1,3 @@
-const arr = [1, 2, 3]
-console.log('Hello from webpack')
-console.log(...arr)
-
 /**
  * Hot reloading module
  */
