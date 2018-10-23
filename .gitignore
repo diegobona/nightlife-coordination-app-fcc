@@ -9,6 +9,7 @@ npm-debug.log
 src
 dist/javascripts/bundle.js.map
 dist/stylesheets/style.css.map
+delete-sourcemaps.js
 
 # Docker
 Dockerfile

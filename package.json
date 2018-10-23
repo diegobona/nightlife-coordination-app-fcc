@@ -14,6 +14,7 @@
     "dev:webpack": "webpack-dev-server --content-base=www --inline --watch --hot --open",
     "dev:build": "webpack --mode development",
     "build": "webpack -p",
+    "postbuild": "node ./delete-sourcemaps.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
