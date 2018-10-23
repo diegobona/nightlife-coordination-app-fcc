@@ -1,11 +1,15 @@
 // webpack.config.js
 const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const HtmlWebPackPlugin = require("html-webpack-plugin")
 
 module.exports = {
     mode: process.env.NODE_ENV,
     entry: {
-        entry: ['./src/app.js', './src/styles/main.scss']
+        entry: [
+            './src/app.js', 
+            './src/styles/main.scss'
+        ]
     },
     output: {
         path: path.join(__dirname, 'dist'),
@@ -19,10 +23,20 @@ module.exports = {
     plugins: [
         new MiniCssExtractPlugin({
             filename: 'stylesheets/style.css',
-        })
+        }),
+        new HtmlWebPackPlugin({
+            template: "./src/index.html",
+            filename: "index.html"
+          })
     ],
     module: {
         rules: [
+            {
+                test: /\.jsx?$/,
+                loaders: 'babel-loader',
+                exclude: /node_modules/,
+                include: path.join(__dirname, 'src')
+            },
             {
                 test: /\.scss$/,
                 use:  [
@@ -44,6 +58,7 @@ module.exports = {
               secure: false //don't use https
             }
         ],
+        hot: true,
         port: 9000,
         overlay: { // Shows a full-screen overlay in the browser when there are compiler errors or warnings
             warnings: true, // default false
