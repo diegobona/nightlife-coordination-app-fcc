@@ -7,6 +7,8 @@ npm-debug.log
 *.dev
 .DS_Store
 src
+dist/javascripts/bundle.js.map
+dist/stylesheets/style.css.map
 
 # Docker
 Dockerfile
