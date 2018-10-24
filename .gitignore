@@ -6,7 +6,6 @@ npm-debug.log
 *.env
 *.dev
 .DS_Store
-src
 dist/javascripts/bundle.js.map
 dist/stylesheets/style.css.map
 delete-sourcemaps.js
