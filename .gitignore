@@ -6,9 +6,9 @@ npm-debug.log
 *.env
 *.dev
 .DS_Store
-dist/javascripts/bundle.js.map
-dist/stylesheets/style.css.map
-delete-sourcemaps.js
+dist/javascripts
+dist/stylesheets
+dist/index.html
 
 # Docker
 Dockerfile
