@@ -1,9 +1,7 @@
-var express = require('express');
-var router = express.Router();
+const usersRouter = require('./users');
+const partyRouter = require('./party');
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.json('Hello from backend :)');
-});
-
-module.exports = router;
+module.exports = (app) => {
+  app.use('/users', usersRouter)
+  app.use('/party', partyRouter)
+};
