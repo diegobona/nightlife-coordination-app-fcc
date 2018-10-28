@@ -1,9 +1,10 @@
 import React from 'react'
+import BarList from './Bars'
 
 const App = () => {
     return (
       <div>
-        <p>React here!</p>
+        <BarList />
       </div>
     );
 };

@@ -1,7 +1,7 @@
 const usersRouter = require('./users');
-const partyRouter = require('./party');
+const barsRouter = require('./bars');
 
 module.exports = (app) => {
   app.use('/users', usersRouter)
-  app.use('/party', partyRouter)
+  app.use('/bars', barsRouter)
 };
