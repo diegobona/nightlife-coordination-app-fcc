@@ -14,7 +14,7 @@ const isLoggedOut = (req, res, next) => {
 }
 
 /* GET bars listing. */
-router.get('/', isLogged, barController.index);
+router.get('/', barController.index);
 
 /* POST bars listing. */
 router.post('/:id', isLogged, barController.addUser);

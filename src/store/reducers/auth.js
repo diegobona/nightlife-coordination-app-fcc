@@ -1,5 +1,4 @@
-import actionTypes from './actionTypes'
-import { combineReducers } from 'redux'
+import { LOGIN, LOGOUT } from '../actionTypes'
 
 const logged = (state = {logged: false, user: null}, action) => {
     switch (action.type) {
@@ -10,8 +9,4 @@ const logged = (state = {logged: false, user: null}, action) => {
     }
 }
 
-const reducers = combineReducers({
-    logged
-  })
-  
-  export default reducers
+export default logged

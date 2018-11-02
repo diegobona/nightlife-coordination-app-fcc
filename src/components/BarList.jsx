@@ -1,6 +1,19 @@
 import React from 'react'
 
-const BarList = ({ barList, location, onClick }) => (
+import Loader from './Loader'
+
+const BarList = ({ barList, location, onClick, loading }) => {
+    console.log('Bar list loading:')
+    console.log(loading)
+    return loading
+    ?
+    (
+    <div className='container-loader'>
+        <Loader />
+    </div>
+    )
+    :
+(
     <div className='bars-list'>
         <h1>Bars near {location}:</h1>
         <ul className="list-group">
@@ -34,12 +47,6 @@ const BarList = ({ barList, location, onClick }) => (
         </ul>
     </div>
 )
+}
 
 export default BarList
-
-// name: bar.name,
-// rating: bar.rating,
-// phone: bar.display_phone,
-// address: bar.location.address1,
-// distance: bar.distance,
-// id: bar.id

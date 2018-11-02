@@ -1,0 +1,69 @@
+@import 'transitions';
+
+// Overlay effects
+@mixin overlay-halftone {
+    background-image: radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,0) 2px);
+
+    background-size: 10px 10px;
+}
+
+@mixin overlay-halftone-rainbow {
+    background-image: 
+        radial-gradient(rgba(255,255,255,.2), rgba(255,255,255,0) 2px),
+        linear-gradient(45deg, hsla(0, 50%, 50%, .5), hsla(180, 50%, 50%, .5)), 
+    ;
+    background-size: 10px 10px, 100%;
+    background-repeat: repeat, repeat;
+}
+    
+@mixin overlay-halftone-darken {
+    background-image: 
+        radial-gradient(rgba(255,255,255,.2), rgba(255,255,255,0) 1px),
+        linear-gradient(180deg, hsla(0, 0%, 0%, .6), hsla(180, 50%, 50%, .2)), 
+    ;
+    background-size: 5px 5px, 100%;
+    background-repeat: repeat, repeat;
+}
+
+@mixin overlay-halftone-darken-mid {
+    background-image: 
+        radial-gradient(rgba(255,255,255,.2), rgba(255,255,255,0) 1px),
+        linear-gradient(180deg, hsla(0, 0%, 0%, 0), hsla(0, 0%, 0%, .6),  hsla(0, 0%, 0%, 0)), 
+    ;
+    background-size: 5px 5px, 100%;
+    background-repeat: repeat, repeat;
+}
+
+@mixin overlay-halftone-grid {
+    background-image: 
+        linear-gradient(0, hsla(0, 100%, 0%, .4), hsla(180, 50%, 50%, 0)) ,
+        linear-gradient(90deg, hsla(0, 0%, 0%, .4), hsla(180, 50%, 50%, 0));
+    background-size: 5px 5px;
+    background-repeat: repeat;
+}
+
+@mixin overlay-halftone-bars {
+  @include transform(rotate(45deg) scale(2));
+    background-image: 
+        linear-gradient(0, hsla(0, 100%, 0%, .4), hsla(180, 50%, 50%, 0)) ,
+        linear-gradient(90deg, hsla(0, 0%, 0%, .4), hsla(180, 50%, 50%, 0));
+  background-size: 5px 5px;
+  background-repeat: repeat;
+}
+
+@mixin overlay-halftone-bars-strict {
+  @include transform(rotate(-45deg) scale(2));
+    background-image: 
+        linear-gradient(0, hsla(0, 0%, 0%, .4) 5px, hsla(180, 50%, 50%, 0) 5px);
+  background-size: 6px 6px;
+  background-repeat: repeat;
+}
+
+@mixin overlay-halftone-bars-strict-double {
+  @include transform(rotate(-45deg) scale(2));
+    background-image: 
+        linear-gradient(0, hsla(0, 0%, 0%, .4) 5px, hsla(180, 50%, 50%, 0) 5px),
+        linear-gradient(90deg, hsla(0, 0%, 0%, .4) 5px, hsla(180, 50%, 50%, 0) 5px);
+  background-size: 6px 6px;
+  background-repeat: repeat;
+}

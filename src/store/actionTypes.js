@@ -1,3 +1,5 @@
+exports.LOADING = 'LOADING'
 exports.LOGIN = 'LOGIN'
 exports.LOGOUT = 'LOGOUT'
 exports.BARS = 'BARS'
+exports.ERROR = 'ERROR'

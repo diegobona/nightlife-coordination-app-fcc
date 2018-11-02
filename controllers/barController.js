@@ -26,10 +26,13 @@ exports.index = (req, res) => {
         }
     }, (err, results) => {
       if (err) {
-        console.log('Asyncs results error:')
-        console.log(JSON.parse(err.response.body).error.code)      // LOCATION_NOT_FOUND
+        // console.log('Asyncs results error:')
+        // console.log(JSON.parse(err.response.body).error.code)      // LOCATION_NOT_FOUND
+        if (JSON.parse(err.response.body).error.code == 'LOCATION_NOT_FOUND') {
+          return res.send(err)
+        }
       }
-      // console.log(results.yelp.json())
+      
       return res.send(results.yelp)
     })
 
