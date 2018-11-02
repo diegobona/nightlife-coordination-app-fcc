@@ -6,7 +6,6 @@ const Schema = mongoose.Schema
 
 const BarSchema = new Schema(
     {
-      bar_id: {type: String, unique: true},
       timestamp: {type: Date, default: Date.now()},
       users: [{type: Schema.Types.ObjectId, ref: 'User'}]
     }

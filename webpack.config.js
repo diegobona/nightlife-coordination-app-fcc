@@ -7,7 +7,8 @@ module.exports = {
     mode: process.env.NODE_ENV,
     entry: {
         entry: [
-            './src/app.js', 
+            'babel-polyfill',
+            './src/app.jsx', 
             './src/styles/main.scss'
         ]
     },
@@ -68,7 +69,7 @@ module.exports = {
         watchContentBase: true,
         proxy: [ // allows redirect of requests to webpack-dev-server to another destination
             {
-              context: ['/api', '/users'],  // can have multiple
+              context: ['/user', '/user/auth', '/bar'],  // can have multiple
               target: 'http://localhost:3000', //server and port to redirect to
               secure: false //don't use https
             }

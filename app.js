@@ -1,15 +1,15 @@
-const express = require('express');
-const path = require('path');
+const express = require('express')
+const path = require('path')
 require('dotenv').config()
 
-const middlewaresConfig = require('./config/middlewares');
-const errorHandler = require('./config/errorHandling');
+const middlewaresConfig = require('./config/middlewares')
+const errorHandler = require('./config/errorHandling')
 
-const app = express();
+const app = express()
 middlewaresConfig(app)
 
-app.use(express.static(path.join(__dirname, 'dist')));
+app.use(express.static(path.join(__dirname, 'dist')))
 
 errorHandler(app)
 
-module.exports = app;
+module.exports = app

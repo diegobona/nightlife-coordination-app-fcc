@@ -6,6 +6,41 @@ const saltRounds = 10
 
 const User = require('../models/user')
 
+
+/* Password validation */
+const passwordValidator = require('password-validator')
+
+const checkPassword = (password) => {
+  
+  const schema = new passwordValidator()
+  
+  schema
+  .is().min(8)                                    // Minimum length 8
+  .is().max(30)                                   // Maximum length 100
+  .has().uppercase()                              // Must have uppercase letters
+  .has().lowercase()                              // Must have lowercase letters
+  .has().digits()                                 // Must have digits
+  .has().not().spaces()                           // Should not have spaces
+  .is().not().oneOf(['zaq12WSX', 'ZAQ12wsx', 'Passw0rd', 'Password123'])  // Blacklist these valuesschema
+
+  const errors = schema.validate(password, { list: true })
+
+  if (errors.length == 0) return true
+
+  const passwordErrors = {
+    min: 'is too short (min. 8 characters)',
+    max: 'is too long (max. 30 characters)',
+    uppercase: 'have no uppercase letters',
+    lowercase: 'have no lowercase letters',
+    digits: 'have no digits',
+    spaces: 'have no spaces',
+    oneOf: 'is too common'
+  }
+
+  return errors.map(error => passwordErrors[error])
+
+}
+
 module.exports = (passport) => {
   
   passport.serializeUser((user, done) => {
@@ -14,6 +49,7 @@ module.exports = (passport) => {
   
   passport.deserializeUser((id, done) => {
     User.findById(id, (err, user) => {
+      if (err) console.log(err)
       done(null, user)
     })
   })
@@ -81,8 +117,8 @@ module.exports = (passport) => {
       callback: process.env.GITHUB_CALLBACK_URL
     },
     (accessToken, refreshToken, profile, done) => {
-      User.findOneAndUpdate({ 'github.id': profile.id }, 
-                            { 'github.username': profile.displayName || 'Buddy',  'github.id': profile.id }, 
+      User.findOneAndUpdate({ 'github_id': profile.id }, 
+                            { 'github_username': profile.displayName || 'Buddy',  'github.id': profile.id }, 
                             { upsert: true, new: true }, 
                             (err, user) => {
         if (err) return done(err, user)

@@ -1,0 +1,16 @@
+.bar-details {
+    cursor: pointer;
+    &:hover {
+        background-color: #e9ecef;
+    }
+
+    ul li {
+        font-weight: bold;
+        &:hover {
+            background-color: #e9ecef;
+        }
+        &:first-child {
+            background-color: oldlace;
+        }
+    }
+}
