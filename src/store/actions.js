@@ -9,6 +9,10 @@ export const loading = (bool) => (
 )
 
 // Authentication
+export const showLoginForm = (bool) => (
+  { type: actionTypes.SHOW_LOGIN_FORM, payload: bool }
+)
+
 export const login = (id) => (
   { type: actionTypes.LOGIN, payload: {logged: true, user: id} }
 )
@@ -30,7 +34,6 @@ export const checkUser = () => dispatch => {
   .then(data => {
     // localStorage.setItem('user', JSON.stringify(data))
     dispatch(batchActions([!!data.user ? login(data.user._id) : logout(), loading(false)]))
-    console.log(data)
     return data
   })
 }

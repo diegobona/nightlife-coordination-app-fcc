@@ -3,14 +3,10 @@ import React from 'react'
 import Loader from './Loader'
 
 const BarList = ({ barList, location, onClick, loading }) => {
-    console.log('Bar list loading:')
-    console.log(loading)
     return loading
     ?
     (
-    <div className='container-loader'>
-        <Loader />
-    </div>
+    <Loader />
     )
     :
 (

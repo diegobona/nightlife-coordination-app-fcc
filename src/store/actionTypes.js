@@ -1,4 +1,5 @@
 exports.LOADING = 'LOADING'
+exports.SHOW_LOGIN_FORM = 'SHOW_LOGIN_FORM'
 exports.LOGIN = 'LOGIN'
 exports.LOGOUT = 'LOGOUT'
 exports.BARS = 'BARS'

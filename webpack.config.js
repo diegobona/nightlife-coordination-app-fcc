@@ -39,13 +39,15 @@ module.exports = {
                 include: path.join(__dirname, 'src')
             },
             {
-                test: /\.scss$/,
+                test: /\.s?css$/,
                 use:  [
                     {
-                        loader: 'style-loader'
-                    }, {
-                        loader: MiniCssExtractPlugin.loader
-                    }, {
+                        loader: process.env.NODE_ENV !== 'production' ? 'style-loader' : MiniCssExtractPlugin.loader
+                    }, 
+                    // {
+                    //     loader: MiniCssExtractPlugin.loader
+                    // }, 
+                    {
                         loader: 'css-loader'
                     }, {
                         loader: 'postcss-loader', // Run post css actions

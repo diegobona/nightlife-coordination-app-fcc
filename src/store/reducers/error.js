@@ -12,7 +12,6 @@ const errors = (err) => {
 }
 
 const error = (state = '', action) => {
-    console.log('reducer error')
     switch (action.type) {
         case ERROR:
             errors(action.payload)

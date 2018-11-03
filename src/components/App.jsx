@@ -5,13 +5,14 @@ import { connect } from 'react-redux'
 import BarSearch from './BarSearch'
 import BarList from './BarList'
 import Navbar from './Navbar'
+import LoginForm from './LoginForm'
 
 import { checkUser, getBars } from '../store/actions'
 
 class App extends Component {
   constructor(props) {
     super(props)
-    this.props.checkUser()
+    this.props.user()
   }
 
   componentDidMount() {
@@ -22,7 +23,6 @@ class App extends Component {
 
   render() {
     console.log('Logged: ' + this.props.logged)
-    // if (true) return <div className='container'><Loader /></div>
 
     return (
       // <Route path="/" onEnter>
@@ -34,6 +34,7 @@ class App extends Component {
         <Navbar />
         <BarSearch findBars={this.props.findBars} />
         {this.props.location && !this.props.error ? <BarList barList={this.props.bars} location={this.props.location} loading={this.props.loading}/> : null}
+        {this.props.showLoginForm ? <LoginForm /> : null}
       </div>
     )
   }
@@ -45,13 +46,14 @@ const mapStateToProps = (state) => (
     logged: state.auth.logged,
     bars: state.bars.bars,
     location: state.bars.location,
-    error: state.error
+    error: state.error,
+    showLoginForm: state.showLoginForm
   }
 )
 
 const mapDispatchToProps = (dispatch) => (
   { 
-    checkUser: () => dispatch(checkUser()),
+    user: () => dispatch(checkUser()),
     findBars: location => dispatch(getBars(location))
   }
 )
