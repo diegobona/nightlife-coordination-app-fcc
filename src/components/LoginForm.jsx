@@ -86,7 +86,7 @@ return (
                         <input type="password" required autoComplete="off"/>
                     </div>
                     
-                    <button type="submit" className="button button-block" >Sign Up</button>
+                    <button type="submit" className="button button-block button-signup" >Sign Up</button>
                 
                 </form>
 
@@ -113,7 +113,13 @@ return (
                 
                 {/* <p className="forgot"><a href="#">Forgot Password?</a></p> */}
                 
-                <button className="button button-block">Log In</button>
+                <div className='form-button-group'>
+                    <button className="button button-block button-login">Log In</button>
+                    <a href='/user/auth/github' className="button button-block button-login">
+                        <img src="/images/GitHub_Logo_White.png" alt="Italian Trulli"></img>
+                    </a>
+                    {/* <button className="button button-block button-login"></button> */}
+                </div>
                 
                 </form>
 
@@ -136,7 +142,8 @@ return (
 
 const mapDispatchToProps = dispatch => (
     { 
-        showForm: bool => dispatch(showLoginForm(bool))
+        showForm: bool => dispatch(showLoginForm(bool)),
+
     }
 )
 

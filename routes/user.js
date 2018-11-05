@@ -22,4 +22,6 @@ router.get('/auth/github/callback', userController.githubCallback)
 
 router.get('/auth', userController.auth)
 
+router.get('/auth/logout', isLogged, userController.logout)
+
 module.exports = router

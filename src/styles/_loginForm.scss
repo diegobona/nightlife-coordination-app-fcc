@@ -4,9 +4,9 @@ $body-bg: #c1bdba;
 $form-bg: #13232f;
 $white: #ffffff;
 
-$main: #1ab188;
-$main-light: lighten($main,5%);
-$main-dark: darken($main,5%);
+$main: firebrick; // #1ab188;
+$main-light: lighten($main,10%);
+$main-dark: darken($main,10%);
 
 $gray-light: #a0b3b0;
 $gray: #ddd;
@@ -167,9 +167,10 @@ $br: 4px;
   }
   
   .button {
-    border:0;
+    cursor: pointer;
+    border:$br;
     outline:none;
-    border-radius:0;
+    border-radius:$br;
     padding:15px 0;
     font-size:2rem;
     font-weight:$bold;
@@ -183,10 +184,31 @@ $br: 4px;
       background:$main-dark;
     }
   }
-  
-  .button-block {
-    display:block;
+
+  .button-signup {
+    display: block;
     width:100%;
+  }
+  
+  .button-login {
+    display: block-inline;
+    width:48%;
+
+    &:nth-child(2) {
+      float: right;
+      max-height: 67px;
+      object-fit: cover;
+
+        & img {
+          display: block;
+          margin: auto;
+          height: 37px;
+        }
+    
+      // background-image: url(/images/GitHub_Logo_White.png);
+      // background-size: contain;
+      // background-repeat: no-repeat;
+    }
   }
   
   .forgot {
@@ -198,5 +220,10 @@ $br: 4px;
 @media (max-width: 768px) {
   .login-form {
       max-width: 90vw;
+  }
+  
+  .button-login {
+    font-size: 1rem !important;
+    height: 67px;
   }
 }

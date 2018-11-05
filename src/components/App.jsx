@@ -6,6 +6,7 @@ import BarSearch from './BarSearch'
 import BarList from './BarList'
 import Navbar from './Navbar'
 import LoginForm from './LoginForm'
+import Loader from './Loader'
 
 import { checkUser, getBars } from '../store/actions'
 
@@ -13,6 +14,9 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.props.user()
+  }
+
+  componentWillMount() {
   }
 
   componentDidMount() {
@@ -23,8 +27,8 @@ class App extends Component {
 
   render() {
     console.log('Logged: ' + this.props.logged)
-
-    return (
+    
+    if (!this.props.loading) return (
       // <Route path="/" onEnter>
       //   <Route path="login" component={Navbar} />
       //   <Route path="logout" component={Logout} />
@@ -37,6 +41,7 @@ class App extends Component {
         {this.props.showLoginForm ? <LoginForm /> : null}
       </div>
     )
+    else return <Loader />
   }
 }
 

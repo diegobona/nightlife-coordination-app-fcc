@@ -1,6 +1,6 @@
 import { LOGIN, LOGOUT } from '../actionTypes'
 
-const logged = (state = {logged: false, user: null}, action) => {
+const logged = (state = {logged: null, user: null}, action) => {
     switch (action.type) {
         case LOGIN || LOGOUT:
             return action.payload

@@ -26,10 +26,13 @@ exports.index = (req, res) => {
         }
     }, (err, results) => {
       if (err) {
+        console.log(err)
         // console.log('Asyncs results error:')
         // console.log(JSON.parse(err.response.body).error.code)      // LOCATION_NOT_FOUND
-        if (JSON.parse(err.response.body).error.code == 'LOCATION_NOT_FOUND') {
+        if (err.response && JSON.parse(err.response.body).error.code == 'LOCATION_NOT_FOUND') {
           return res.send(err)
+        } else {
+          return res.send(err.code)
         }
       }
       

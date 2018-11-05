@@ -29,13 +29,17 @@ export const checkUser = () => dispatch => {
     if (response.status !== 200) {  
       return Promise.reject('Authentication failed') 
     }
+    
     return response.json()
   })
   .then(data => {
+    console.log('user/auth')
+    console.log(!!data.user)
     // localStorage.setItem('user', JSON.stringify(data))
     dispatch(batchActions([!!data.user ? login(data.user._id) : logout(), loading(false)]))
     return data
   })
+  .catch(err => console.log(err))
 }
 
 // Bars

@@ -25,6 +25,11 @@ exports.localRegister = (req, res, next) => {
     
 }
 
+exports.logout = (req, res) => {
+    req.logout()
+    res.redirect('/')
+}
+
 exports.auth = (req, res, next) => {
     req.user
     ? res.json({ user: req.user })
