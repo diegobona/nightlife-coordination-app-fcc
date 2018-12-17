@@ -6,7 +6,15 @@ const Schema = mongoose.Schema
 
 const UserSchema = new Schema(
     {
-      username: {type: String, max: 20, unique: true},
+      username: { 
+        type: String, 
+        max: 30,
+        trim: true, 
+        index: {
+          unique: true,
+          partialFilterExpression: { username: {$type: 'string'} }
+        }
+      },
       password: {type: String},
       github_id: {type: String},
       github_username: {type: String},

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { showLoginForm } from '../store/actions'
+import { showLoginForm, localLogin, localRegister } from '../store/actions'
 import $ from 'jquery'
 
 
@@ -70,20 +70,26 @@ return (
             <div id="signup">   
                 <h1>Sign Up for Free</h1>
                 
-                <form action="/" method="post">
+                <form  onSubmit={(e) => {
+                    e.persist()
+                    e.preventDefault()
+                    const username = e.target.elements.username.value
+                    const password = e.target.elements.password.value
+                    this.props.localRegister({ username, password })}
+                }>
                 
                     <div className="field-wrap">
                         <label>
-                            Email Address<span className="req">*</span>
+                            Username<span className="req">*</span>
                         </label>
-                        <input type="email" required autoComplete="off"/>
+                        <input type="text" name="username" required autoComplete="off"/>
                     </div>
                     
                     <div className="field-wrap">
                         <label>
                             Set A Password<span className="req">*</span>
                         </label>
-                        <input type="password" required autoComplete="off"/>
+                        <input type="password" name="password" required autoComplete="off"/>
                     </div>
                     
                     <button type="submit" className="button button-block button-signup" >Sign Up</button>
@@ -93,33 +99,39 @@ return (
                 </div>
             
             <div id="login">   
-            <h1>Welcome Back!</h1>
-            
-            <form action="/" method="post">
-            
-                <div className="field-wrap">
-                    <label>
-                        Email Address<span className="req">*</span>
-                    </label>
-                    <input type="email" required autoComplete="off"/>
-                </div>
-            
-                <div className="field-wrap">
-                    <label>
-                        Password<span className="req">*</span>
-                    </label>
-                    <input type="password" required autoComplete="off"/>
-                </div>
+                <h1>Welcome Back!</h1>
                 
-                {/* <p className="forgot"><a href="#">Forgot Password?</a></p> */}
+                <form onSubmit={(e) => {
+                    e.persist()
+                    e.preventDefault()
+                    const username = e.target.elements.username.value
+                    const password = e.target.elements.password.value
+                    this.props.localLogin({ username, password })}
+                }>
+            
+                    <div className="field-wrap">
+                        <label>
+                            Username<span className="req">*</span>
+                        </label>
+                        <input type="text" name="username" required autoComplete="off"/>
+                    </div>
                 
-                <div className='form-button-group'>
-                    <button className="button button-block button-login">Log In</button>
-                    <a href='/user/auth/github' className="button button-block button-login">
-                        <img src="/images/GitHub_Logo_White.png" alt="Italian Trulli"></img>
-                    </a>
-                    {/* <button className="button button-block button-login"></button> */}
-                </div>
+                    <div className="field-wrap">
+                        <label>
+                            Password<span className="req">*</span>
+                        </label>
+                        <input type="password" name="password" required autoComplete="off"/>
+                    </div>
+                    
+                    {/* <p className="forgot"><a href="#">Forgot Password?</a></p> */}
+                    
+                    <div className='form-button-group'>
+                        <button type='submit' className="button button-block button-login">Log In</button>
+                        <a href='/user/auth/github' className="button button-block button-login">
+                            <img src="/images/GitHub_Logo_White.png" alt="Italian Trulli"></img>
+                        </a>
+                        {/* <button className="button button-block button-login"></button> */}
+                    </div>
                 
                 </form>
 
@@ -143,7 +155,8 @@ return (
 const mapDispatchToProps = dispatch => (
     { 
         showForm: bool => dispatch(showLoginForm(bool)),
-
+        localLogin: (username, password) => dispatch(localLogin(username, password)),
+        localRegister: (username, password) => dispatch(localRegister(username, password))
     }
 )
 

@@ -33,13 +33,12 @@ export const checkUser = () => dispatch => {
     return response.json()
   })
   .then(data => {
-    console.log('user/auth')
-    console.log(!!data.user)
     // localStorage.setItem('user', JSON.stringify(data))
     dispatch(batchActions([!!data.user ? login(data.user._id) : logout(), loading(false)]))
-    return data
   })
-  .catch(err => console.log(err))
+  .catch(err => {
+    dispatch(batchActions([logout(), loading(false), error('CONNECTION_ERROR')]))
+  })
 }
 
 // Bars
@@ -65,15 +64,59 @@ export const getBars = location => dispatch => {
       dispatch(batchActions([setBars([], location), loading(false), error('LOCATION_NOT_FOUND')]))
     } else {
       localStorage.setItem('location', location)
-      dispatch(batchActions([setBars(parseBarList(data), location), loading(false), error('')]))
+      dispatch(batchActions([setBars(parseBarList(data), location), loading(false), error(null)]))
     }
   })
   .catch(err => {
-    console.log(err)
+    console.log('bars fetching error')
+    dispatch(batchActions([loading(false), error('CONNECTION_ERROR')]))
+  })
+}
+
+// Local login and signup
+export const localLogin = ({ username, password }) => dispatch => {
+  dispatch(loading(true))
+
+  fetch('/user/auth/local/login', {
+    method: 'post',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({ username, password })
+  })
+  .then(response => {
+    return response.json();
+  })
+  .then(data => {
+    if (data.code) return dispatch(batchActions([loading(false), error(data.code, data.message)]))
+    else return dispatch(batchActions([loading(false), showLoginForm(false), error('logged')]))
+  })
+  .catch(err => {
+    dispatch(batchActions([loading(false), error('LOGIN_ERROR', 'We have some connection problems.')]))
+  })
+
+}
+
+export const localRegister = ({ username, password }) => dispatch => {
+  
+  dispatch(loading(true))
+
+  fetch('/user/auth/local/register', {
+    method: 'post',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({ username, password })
+  })
+  .then(response => {
+    return response.json();
+  })
+  .then(data => {
+    if (data.code) return dispatch(batchActions([loading(false), error(data.code, data.message)]))
+    else return dispatch(batchActions([loading(false), showLoginForm(false), error('logged')]))
+  })
+  .catch(err => {
+    dispatch(batchActions([loading(false), error('LOGIN_ERROR', 'We have some connection problems.')]))
   })
 }
 
 // Error
-export const error = (error) => (
-  { type: actionTypes.ERROR, payload: error }
+export const error = (error, text) => (
+  { type: actionTypes.ERROR, payload: { error, text } }
 )

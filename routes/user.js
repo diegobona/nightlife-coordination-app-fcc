@@ -24,4 +24,8 @@ router.get('/auth', userController.auth)
 
 router.get('/auth/logout', isLogged, userController.logout)
 
+router.post('/auth/local/login', isLoggedOut, userController.localLogin)
+
+router.post('/auth/local/register', isLoggedOut, userController.localRegister)
+
 module.exports = router
